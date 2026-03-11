@@ -5,16 +5,17 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Product {
+model Outfit {
   id          Int      @id @default(autoincrement())
-  name        String
-  type        String   // Chemise, Cravate, Veste, Pantalon, Accessoire
+  outfit_name String
+  type        String
   brand       String
-  region      String
+  origine     String
   price       Float
   collab      Boolean  @default(false)
   image       String?
@@ -23,9 +24,8 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  orderItems  OrderItem[]
+  orderItems  OrderItem[]   // ← ajoute cette ligne
 }
-
 model Order {
   id         Int         @id @default(autoincrement())
   email      String
@@ -40,10 +40,10 @@ model Order {
 model OrderItem {
   id        Int     @id @default(autoincrement())
   orderId   Int
-  productId Int
+  outfitId  Int
   quantity  Int     @default(1)
   price     Float
 
   order     Order   @relation(fields: [orderId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+  outfit    Outfit  @relation(fields: [outfitId], references: [id])
 }

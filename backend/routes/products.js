@@ -3,77 +3,61 @@ const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// GET tous les produits (avec filtres optionnels)
 router.get('/', async (req, res) => {
   try {
-    const { type, region, brand, collab, maxPrice, search } = req.query;
-    const where = {};
-    if (type) where.type = type;
-    if (region) where.region = region;
-    if (brand) where.brand = brand;
-    if (collab !== undefined) where.collab = collab === 'true';
-    if (maxPrice) where.price = { lte: parseFloat(maxPrice) };
-    if (search) where.OR = [
-      { name: { contains: search, mode: 'insensitive' } },
-      { brand: { contains: search, mode: 'insensitive' } },
-      { region: { contains: search, mode: 'insensitive' } },
-    ];
-    const products = await prisma.product.findMany({ where, orderBy: { id: 'asc' } });
-    res.json(products);
+    const outfits = await prisma.outfit.findMany({ orderBy: { id: 'asc' } });
+    // Renommer outfit_name en name pour le frontend
+    const formatted = outfits.map(o => ({ ...o, name: o.outfit_name }));
+    res.json(formatted);
   } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la recuperation des produits', details: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
-// GET un produit par ID
 router.get('/:id', async (req, res) => {
   try {
-    const product = await prisma.product.findUnique({ where: { id: parseInt(req.params.id) } });
-    if (!product) return res.status(404).json({ error: 'Produit introuvable' });
-    res.json(product);
+    const outfit = await prisma.outfit.findUnique({ where: { id: parseInt(req.params.id) } });
+    if (!outfit) return res.status(404).json({ error: 'Produit introuvable' });
+    res.json({ ...outfit, name: outfit.outfit_name });
   } catch (error) {
-    res.status(500).json({ error: 'Erreur serveur', details: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
-// POST creer un produit
 router.post('/', async (req, res) => {
   try {
-    const { name, type, brand, region, price, collab, image, description, stock } = req.body;
-    if (!name || !type || !brand || !region || !price) {
-      return res.status(400).json({ error: 'Champs obligatoires manquants: name, type, brand, region, price' });
-    }
-    const product = await prisma.product.create({
-      data: { name, type, brand, region, price: parseFloat(price), collab: collab || false, image, description, stock: stock || 10 }
+    const { outfit_name, type, brand, origine, price, collab, image, description, stock } = req.body;
+    if (!outfit_name || !type || !brand || !origine || !price)
+      return res.status(400).json({ error: 'Champs obligatoires manquants' });
+    const outfit = await prisma.outfit.create({
+      data: { outfit_name, type, brand, origine, price: parseFloat(price), collab: collab || false, image, description, stock: stock || 10 }
     });
-    res.status(201).json(product);
+    res.status(201).json(outfit);
   } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la creation', details: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
-// PUT modifier un produit
 router.put('/:id', async (req, res) => {
   try {
-    const product = await prisma.product.update({
+    const outfit = await prisma.outfit.update({
       where: { id: parseInt(req.params.id) },
       data: req.body
     });
-    res.json(product);
+    res.json(outfit);
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: 'Produit introuvable' });
-    res.status(500).json({ error: 'Erreur lors de la mise a jour', details: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
-// DELETE supprimer un produit
 router.delete('/:id', async (req, res) => {
   try {
-    await prisma.product.delete({ where: { id: parseInt(req.params.id) } });
-    res.json({ message: 'Produit supprime avec succes' });
+    await prisma.outfit.delete({ where: { id: parseInt(req.params.id) } });
+    res.json({ message: 'Produit supprime' });
   } catch (error) {
     if (error.code === 'P2025') return res.status(404).json({ error: 'Produit introuvable' });
-    res.status(500).json({ error: 'Erreur lors de la suppression', details: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
