@@ -15,9 +15,9 @@
     .search-wrapper input:focus { border-color: var(--grey-700); }
     .search-wrapper input::placeholder { color: var(--grey-400); }
     .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--grey-400); pointer-events: none; }
-    .filters-section { padding: 24px 40px 0; overflow-x: auto; scrollbar-width: none; }
+    .filters-section { padding: 24px 40px 0; overflow: visible; }
     .filters-section::-webkit-scrollbar { display: none; }
-    .filters-track { display: flex; gap: 10px; min-width: max-content; padding-bottom: 4px; }
+  filters-track { display: flex; gap: 10px; min-width: max-content; padding-bottom: 4px; overflow-x: auto; scrollbar-width: none; }
     .filter-group { position: relative; }
     .filter-btn { display: flex; align-items: center; gap: 7px; padding: 8px 16px; background: var(--white); border: 1px solid var(--grey-200); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-700); cursor: pointer; transition: all 0.2s; white-space: nowrap; user-select: none; }
     .filter-btn:hover, .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
@@ -68,3 +68,8 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
     }
     @media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

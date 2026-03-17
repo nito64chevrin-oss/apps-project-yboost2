@@ -11,7 +11,10 @@
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">Maison Verdant</a>
+    <div class="logo-group">
+      <img src="../public_/images,backend/logo.png" alt="MAISON VERDANT logo" height="50" width="auto">
+      <a href="index.html" class="logo">Maison Verdant</a>
+    </div>
     <nav><ul class="header-nav">
       <li><a href="index.html">Collection</a></li>
       <li><a href="#">Lookbook</a></li>
@@ -27,58 +30,75 @@
   </div>
 
   <div class="filters-section">
-    <div class="filters-track">
-      <div class="filter-group">
-        <button class="filter-btn" onclick="toggleDropdown('price-drop', this)">Prix <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown" id="price-drop">
-          <div class="price-range">
-            <div class="price-labels"><span>0 EUR</span><span id="priceVal">1000 EUR</span></div>
-            <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10" oninput="updatePrice(this.value)"/>
+  <div class="filters-track">
+
+    <div class="filter-group">
+      <button class="filter-btn" onclick="toggleDropdown('price-drop', this)">
+        Prix
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown" id="price-drop" onclick="event.stopPropagation()">
+        <div class="price-range">
+          <div class="price-labels">
+            <span>0 EUR</span>
+            <span id="priceVal">1000 EUR</span>
           </div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <button class="filter-btn" onclick="toggleDropdown('type-drop', this)">Type <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown" id="type-drop">
-          <div class="dropdown-item" onclick="setFilter('type','',this)">Tous</div>
-          <div class="dropdown-item" onclick="setFilter('type','Chemise',this)">Chemise</div>
-          <div class="dropdown-item" onclick="setFilter('type','Cravate',this)">Cravate</div>
-          <div class="dropdown-item" onclick="setFilter('type','Veste',this)">Veste</div>
-          <div class="dropdown-item" onclick="setFilter('type','Accessoire',this)">Accessoire</div>
-          <div class="dropdown-item" onclick="setFilter('type','Pantalon',this)">Pantalon</div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <button class="filter-btn" onclick="toggleDropdown('region-drop', this)">Region d'origine <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown" id="region-drop">
-          <div class="dropdown-item" onclick="setFilter('region','',this)">Toutes</div>
-          <div class="dropdown-item" onclick="setFilter('region','France',this)">France</div>
-          <div class="dropdown-item" onclick="setFilter('region','Italie',this)">Italie</div>
-          <div class="dropdown-item" onclick="setFilter('region','Japon',this)">Japon</div>
-          <div class="dropdown-item" onclick="setFilter('region','Angleterre',this)">Angleterre</div>
-          <div class="dropdown-item" onclick="setFilter('region','Portugal',this)">Portugal</div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <button class="filter-btn" onclick="toggleDropdown('brand-drop', this)">Marque <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown" id="brand-drop">
-          <div class="dropdown-item" onclick="setFilter('brand','',this)">Toutes</div>
-          <div class="dropdown-item" onclick="setFilter('brand','Verdant',this)">Verdant</div>
-          <div class="dropdown-item" onclick="setFilter('brand','Leclaire',this)">Leclaire</div>
-          <div class="dropdown-item" onclick="setFilter('brand','Moreau & Fils',this)">Moreau & Fils</div>
-          <div class="dropdown-item" onclick="setFilter('brand','Archipel',this)">Archipel</div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <button class="filter-btn" onclick="toggleDropdown('collab-drop', this)">Collaborations <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown" id="collab-drop">
-          <div class="dropdown-item" onclick="setFilter('collab','',this)">Toutes</div>
-          <div class="dropdown-item" onclick="setFilter('collab',true,this)">Editions limitees</div>
-          <div class="dropdown-item" onclick="setFilter('collab',false,this)">Collection permanente</div>
+          <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10"
+            oninput="updatePrice(this.value)"/>
         </div>
       </div>
     </div>
+
+    <div class="filter-group">
+      <button class="filter-btn" onclick="toggleDropdown('type-drop', this)">
+        Type
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown" id="type-drop" onclick="event.stopPropagation()">
+        <div class="dropdown-item" onclick="setFilter('type','',this)">Tous</div>
+        <div class="dropdown-item" onclick="setFilter('type','Chemise',this)">Chemise</div>
+        <div class="dropdown-item" onclick="setFilter('type','Cravate',this)">Cravate</div>
+        <div class="dropdown-item" onclick="setFilter('type','Veste',this)">Veste</div>
+        <div class="dropdown-item" onclick="setFilter('type','Accessoire',this)">Accessoire</div>
+        <div class="dropdown-item" onclick="setFilter('type','Pantalon',this)">Pantalon</div>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button class="filter-btn" onclick="toggleDropdown('region-drop', this)">
+        Région d'origine
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown" id="region-drop" onclick="event.stopPropagation()">
+        <div class="dropdown-item" onclick="setFilter('region','',this)">Toutes</div>
+        <div class="dropdown-item" onclick="setFilter('region','France',this)">France</div>
+        <div class="dropdown-item" onclick="setFilter('region','Italie',this)">Italie</div>
+        <div class="dropdown-item" onclick="setFilter('region','Japon',this)">Japon</div>
+        <div class="dropdown-item" onclick="setFilter('region','Angleterre',this)">Angleterre</div>
+        <div class="dropdown-item" onclick="setFilter('region','Portugal',this)">Portugal</div>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button class="filter-btn" onclick="toggleDropdown('brand-drop', this)">
+        Marque
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown" id="brand-drop" onclick="event.stopPropagation()">
+        <div class="dropdown-item" onclick="setFilter('brand','',this)">Toutes</div>
+        <div class="dropdown-item" onclick="setFilter('brand','Verdant',this)">Verdant</div>
+        <div class="dropdown-item" onclick="setFilter('brand','Leclaire',this)">Leclaire</div>
+        <div class="dropdown-item" onclick="setFilter('brand','Moreau & Fils',this)">Moreau & Fils</div>
+        <div class="dropdown-item" onclick="setFilter('brand','Archipel',this)">Archipel</div>
+      </div>
+    </div>
+
+    <button class="filter-btn collab-toggle" id="collabBtn" onclick="toggleCollab(this)">
+      Éditions limitées
+    </button>
+
   </div>
+</div>
 
   <div class="divider"></div>
   <div class="result-info">
@@ -96,122 +116,159 @@
 
   <script>
     let allProducts = [];
-    let filters = { type: '', region: '', brand: '', collab: '', maxPrice: 1000, search: '' };
+let filters = { type: '', region: '', brand: '', collab: '', maxPrice: 1000, search: '' };
 
-    async function loadProducts() {
-      try {
-        const res = await fetch('/api/products');
-        if (!res.ok) throw new Error('API error');
-        allProducts = await res.json();
-      } catch (e) {
-        // Fallback donnees statiques si le serveur n'est pas lance
-        allProducts = [
-          { id: 1,  name: "Chemise Oxford No. 4",       type: "Chemise",    brand: "Verdant",       region: "France",     price: 145, collab: false, image: "" },
-          { id: 2,  name: "Cravate Soie Vert Nuit",     type: "Cravate",    brand: "Leclaire",      region: "France",     price: 89,  collab: false, image: "" },
-          { id: 3,  name: "Veste Ceremony",             type: "Veste",      brand: "Moreau & Fils", region: "Italie",     price: 490, collab: false, image: "" },
-          { id: 4,  name: "Chemise Lin Blanc Brut",     type: "Chemise",    brand: "Archipel",      region: "Portugal",   price: 110, collab: false, image: "" },
-          { id: 5,  name: "Pochette Argent Vol.1",      type: "Accessoire", brand: "Verdant",       region: "Japon",      price: 55,  collab: true,  image: "" },
-          { id: 6,  name: "Chemise Popeline Noire",     type: "Chemise",    brand: "Verdant",       region: "France",     price: 130, collab: false, image: "" },
-          { id: 7,  name: "Pantalon Flanelle Gris",     type: "Pantalon",   brand: "Moreau & Fils", region: "Angleterre", price: 210, collab: false, image: "" },
-          { id: 8,  name: "Cravate Rayee Bordeaux",     type: "Cravate",    brand: "Leclaire",      region: "Italie",     price: 75,  collab: false, image: "" },
-          { id: 9,  name: "Chemise Madras x Archipel",  type: "Chemise",    brand: "Archipel",      region: "Japon",      price: 175, collab: true,  image: "" },
-          { id: 10, name: "Boutons de manchette Noirs", type: "Accessoire", brand: "Verdant",       region: "France",     price: 45,  collab: false, image: "" },
-          { id: 11, name: "Chemise Coton Sea Island",   type: "Chemise",    brand: "Moreau & Fils", region: "Angleterre", price: 225, collab: false, image: "" },
-          { id: 12, name: "Veste Tweed Ecossais",       type: "Veste",      brand: "Leclaire",      region: "Angleterre", price: 540, collab: false, image: "" },
-          { id: 13, name: "Ceinture Cuir Naturel",      type: "Accessoire", brand: "Archipel",      region: "Portugal",   price: 95,  collab: false, image: "" },
-          { id: 14, name: "Chemise Denim Delave",       type: "Chemise",    brand: "Verdant",       region: "Japon",      price: 160, collab: false, image: "" },
-          { id: 15, name: "Pantalon Chino Ivoire",      type: "Pantalon",   brand: "Archipel",      region: "Portugal",   price: 185, collab: false, image: "" },
-          { id: 16, name: "Pochette Soie x Moreau",     type: "Accessoire", brand: "Moreau & Fils", region: "Italie",     price: 65,  collab: true,  image: "" },
-        ];
-      }
-      renderProducts();
-    }
+async function loadProducts() {
+  try {
+    const res = await fetch('/api/products');
+    if (!res.ok) throw new Error('API error');
+    allProducts = await res.json();
+  } catch (e) {
+    allProducts = [
+      { id: 1,  name: "Chemise Oxford No. 4",       type: "Chemise",    brand: "Verdant",       region: "France",     price: 145, collab: false, image: "" },
+      { id: 2,  name: "Cravate Soie Vert Nuit",     type: "Cravate",    brand: "Leclaire",      region: "France",     price: 89,  collab: false, image: "" },
+      { id: 3,  name: "Veste Ceremony",             type: "Veste",      brand: "Moreau & Fils", region: "Italie",     price: 490, collab: false, image: "" },
+      { id: 4,  name: "Chemise Lin Blanc Brut",     type: "Chemise",    brand: "Archipel",      region: "Portugal",   price: 110, collab: false, image: "" },
+      { id: 5,  name: "Pochette Argent Vol.1",      type: "Accessoire", brand: "Verdant",       region: "Japon",      price: 55,  collab: true,  image: "" },
+      { id: 6,  name: "Chemise Popeline Noire",     type: "Chemise",    brand: "Verdant",       region: "France",     price: 130, collab: false, image: "" },
+      { id: 7,  name: "Pantalon Flanelle Gris",     type: "Pantalon",   brand: "Moreau & Fils", region: "Angleterre", price: 210, collab: false, image: "" },
+      { id: 8,  name: "Cravate Rayee Bordeaux",     type: "Cravate",    brand: "Leclaire",      region: "Italie",     price: 75,  collab: false, image: "" },
+      { id: 9,  name: "Chemise Madras x Archipel",  type: "Chemise",    brand: "Archipel",      region: "Japon",      price: 175, collab: true,  image: "" },
+      { id: 10, name: "Boutons de manchette Noirs", type: "Accessoire", brand: "Verdant",       region: "France",     price: 45,  collab: false, image: "" },
+      { id: 11, name: "Chemise Coton Sea Island",   type: "Chemise",    brand: "Moreau & Fils", region: "Angleterre", price: 225, collab: false, image: "" },
+      { id: 12, name: "Veste Tweed Ecossais",       type: "Veste",      brand: "Leclaire",      region: "Angleterre", price: 540, collab: false, image: "" },
+      { id: 13, name: "Ceinture Cuir Naturel",      type: "Accessoire", brand: "Archipel",      region: "Portugal",   price: 95,  collab: false, image: "" },
+      { id: 14, name: "Chemise Denim Delave",       type: "Chemise",    brand: "Verdant",       region: "Japon",      price: 160, collab: false, image: "" },
+      { id: 15, name: "Pantalon Chino Ivoire",      type: "Pantalon",   brand: "Archipel",      region: "Portugal",   price: 185, collab: false, image: "" },
+      { id: 16, name: "Pochette Soie x Moreau",     type: "Accessoire", brand: "Moreau & Fils", region: "Italie",     price: 65,  collab: true,  image: "" },
+    ];
+  }
+  renderProducts();
+}
 
-    function renderProducts() {
-      const grid = document.getElementById('productsGrid');
-      const noRes = document.getElementById('noResults');
-      const q = filters.search.toLowerCase().trim();
-      const filtered = allProducts.filter(p => {
-        if (filters.type && p.type !== filters.type) return false;
-        if (filters.region && p.region !== filters.region) return false;
-        if (filters.brand && p.brand !== filters.brand) return false;
-        if (filters.collab !== '' && p.collab !== filters.collab) return false;
-        if (p.price > filters.maxPrice) return false;
-        if (q && ![p.name, p.brand, p.region, p.type].some(s => s.toLowerCase().includes(q))) return false;
-        return true;
-      });
-      document.getElementById('resultCount').textContent = `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
-      grid.innerHTML = '';
-      if (!filtered.length) { noRes.classList.add('visible'); return; }
-      noRes.classList.remove('visible');
-      filtered.forEach(p => {
-        const card = document.createElement('a');
-        card.className = 'product-card';
-        card.href = `product.html?id=${p.id}`;
-        card.innerHTML = `
-          <div class="product-image">
-            ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>` : `<div class="img-placeholder"><span>${p.name.charAt(0)}</span></div>`}
-            <div class="product-overlay">
-              <div><div class="overlay-price">${p.price} EUR</div><div class="overlay-origin">${p.region}</div></div>
-              <span class="overlay-arrow">&#8599;</span>
-            </div>
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const noRes = document.getElementById('noResults');
+  const q = filters.search.toLowerCase().trim();
+
+  const filtered = allProducts.filter(p => {
+    if (filters.type   && p.type   !== filters.type)   return false;
+    if (filters.region && p.region !== filters.region) return false;
+    if (filters.brand  && p.brand  !== filters.brand)  return false;
+    if (filters.collab !== '' && p.collab !== filters.collab) return false;
+    if (p.price > filters.maxPrice) return false;
+    if (q && ![p.name, p.brand, p.region, p.type].some(s => s.toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  document.getElementById('resultCount').textContent =
+    `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
+
+  grid.innerHTML = '';
+  if (!filtered.length) { noRes.classList.add('visible'); return; }
+  noRes.classList.remove('visible');
+
+  filtered.forEach(p => {
+    const card = document.createElement('a');
+    card.className = 'product-card';
+    card.href = `product.html?id=${p.id}`;
+    card.innerHTML = `
+      <div class="product-image">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
+          : `<div class="img-placeholder"><span>${p.name.charAt(0)}</span></div>`}
+        <div class="product-overlay">
+          <div>
+            <div class="overlay-price">${p.price} EUR</div>
+            <div class="overlay-origin">${p.region}</div>
           </div>
-          <div class="product-info">
-            <div class="product-type">${p.type}${p.collab ? ' &mdash; Edition limitee' : ''}</div>
-            <div class="product-name">${p.name}</div>
-            <div class="product-brand">${p.brand}</div>
-          </div>`;
-        grid.appendChild(card);
-      });
-    }
+          <span class="overlay-arrow">&#8599;</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-type">${p.type}${p.collab ? ' &mdash; Edition limitée' : ''}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-brand">${p.brand}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
 
-    function toggleDropdown(id, btn) {
-      const target = document.getElementById(id);
-      document.querySelectorAll('.dropdown').forEach(d => { if (d.id !== id) d.classList.remove('open'); });
-      document.querySelectorAll('.filter-btn').forEach(b => { if (b !== btn) b.classList.remove('active'); });
-      target.classList.toggle('open');
-      btn.classList.toggle('active');
-    }
+function toggleDropdown(id, btn) {
+  const target = document.getElementById(id);
+  const isOpen = target.classList.contains('open');
 
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.filter-group')) {
-        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      }
-    });
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    if (!b.classList.contains('collab-toggle')) b.classList.remove('active');
+  });
 
-    function setFilter(key, value, el) {
-      filters[key] = value;
-      el.closest('.dropdown').querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
-      if (value !== '') el.classList.add('selected');
-      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      updateActiveTags(); renderProducts();
-    }
+  if (!isOpen) {
+    target.classList.add('open');
+    btn.classList.add('active');
+  }
+}
 
-    function updatePrice(val) {
-      filters.maxPrice = parseInt(val);
-      document.getElementById('priceVal').textContent = val + ' EUR';
+document.addEventListener('click', e => {
+  if (!e.target.closest('.filter-group')) {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.filter-btn:not(.collab-toggle)').forEach(b => b.classList.remove('active'));
+  }
+});
+
+function setFilter(key, value, el) {
+  filters[key] = value;
+  el.closest('.dropdown').querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+  if (value !== '') el.classList.add('selected');
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.filter-btn:not(.collab-toggle)').forEach(b => b.classList.remove('active'));
+  updateActiveTags();
+  renderProducts();
+}
+
+function updatePrice(val) {
+  filters.maxPrice = parseInt(val);
+  document.getElementById('priceVal').textContent = val + ' EUR';
+  renderProducts();
+}
+
+function toggleCollab(btn) {
+  if (filters.collab === true) {
+    filters.collab = '';      
+    btn.classList.remove('active');
+  } else {
+    filters.collab = true;     
+    btn.classList.add('active');
+  }
+  updateActiveTags();
+  renderProducts();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  filters.search = e.target.value;
+  renderProducts();
+});
+
+function updateActiveTags() {
+  const container = document.getElementById('activeFilters');
+  container.innerHTML = '';
+  const labels = { type: 'Type', region: 'Région', brand: 'Marque', collab: 'Collab' };
+  Object.entries(filters).forEach(([k, v]) => {
+    if (v === '' || k === 'maxPrice' || k === 'search') return;
+    const tag = document.createElement('div');
+    tag.className = 'filter-tag';
+    tag.innerHTML = `${labels[k]}: ${v === true ? 'Éditions limitées' : v} &times;`;
+    tag.onclick = () => {
+      filters[k] = '';
+      if (k === 'collab') document.getElementById('collabBtn').classList.remove('active');
+      updateActiveTags();
       renderProducts();
-    }
+    };
+    container.appendChild(tag);
+  });
+}
 
-    document.getElementById('searchInput').addEventListener('input', e => { filters.search = e.target.value; renderProducts(); });
-
-    function updateActiveTags() {
-      const container = document.getElementById('activeFilters');
-      container.innerHTML = '';
-      const labels = { type: 'Type', region: 'Region', brand: 'Marque', collab: 'Collab' };
-      Object.entries(filters).forEach(([k, v]) => {
-        if (v === '' || k === 'maxPrice' || k === 'search') return;
-        const tag = document.createElement('div');
-        tag.className = 'filter-tag';
-        tag.innerHTML = `${labels[k]}: ${v === true ? 'Editions limitees' : v === false ? 'Permanente' : v} &times;`;
-        tag.onclick = () => { filters[k] = ''; updateActiveTags(); renderProducts(); };
-        container.appendChild(tag);
-      });
-    }
-
-    loadProducts();
+loadProducts();
   </script>
 </body>
 </html>
